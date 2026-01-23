@@ -24,7 +24,7 @@ int main() {
     InfoEntry hostname = parse_hostname();
     InfoEntry uptime = parse_uptime();
 
-    cout << "=== " << HEADER << getenv("USER") << "@" << hostname.value << RESET << " ===" << endl;
+    cout << HEADER << "=== " << getenv("USER") << "@" << hostname.value << " ===" << RESET << endl;
     cout << HEADER << os.prefix << RESET << os.value << endl;
     cout << HEADER << kernel.prefix << RESET << kernel.value << endl;
     cout << HEADER << cpu.prefix << RESET << cpu.value << endl;
