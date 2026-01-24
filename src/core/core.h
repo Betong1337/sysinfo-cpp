@@ -7,6 +7,7 @@
 struct InfoEntry {
     std::string prefix;
     std::string value;
+    int value2;
 };
 
 std::vector<std::string> read_file(const std::string& path);

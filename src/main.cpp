@@ -23,6 +23,9 @@ int main() {
     InfoEntry kernel = parse_kernel();
     InfoEntry hostname = parse_hostname();
     InfoEntry uptime = parse_uptime();
+    InfoEntry gpu_r = parse_gpu();
+
+    vector<string> gpus = splitstring(gpu_r.value, '|');
 
     cout << HEADER << "=== " << getenv("USER") << "@" << hostname.value << " ===" << RESET << endl;
     cout << HEADER << os.prefix << RESET << os.value << endl;
@@ -30,7 +33,14 @@ int main() {
     cout << HEADER << cpu.prefix << RESET << cpu.value << endl;
     cout << HEADER << ram.prefix << RESET << ram.value << endl;
     cout << HEADER << swap.prefix << RESET << swap.value << endl;
-    cout << HEADER << uptime.prefix << RESET << uptime.value << endl;
+    cout << HEADER << uptime.prefix << RESET << uptime.value;
+
+    string gpu;
+    int gpusLen = gpu_r.value2;
+    for (int i=0;i<gpusLen;i++) {
+        gpu = gpus[i];
+        cout << HEADER << gpu_r.prefix << RESET << gpu << endl;
+    }
 
     return 0;
 }
