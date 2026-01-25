@@ -31,11 +31,14 @@ InfoEntry parse_gpu() {
         oss << gpu_result << "|";
         count++;
     }
+
+    if (result.empty()) {
+        return info;
+    }
     
     result = oss.str();
 
     info.prefix = GPU_PREFIX;
     info.value = result;
-    info.value2 = count;
     return info;
 }

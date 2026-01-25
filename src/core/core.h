@@ -6,7 +6,6 @@
 struct InfoEntry {
     std::string prefix;
     std::string value;
-    int value2;
 };
 
 #define USAGE_MSG "Usage: [ --user | --hostname | --cpu | --gpu | --mem | --swap | --all | --uptime | --version | --help]" 
@@ -17,4 +16,4 @@ std::string trim(const std::string& s, std::string str);
 InfoEntry get_info(std::string PATH, std::string INFO_TYPE);
 std::vector<std::string> splitstring(std::string str, char character);
 void print_module(InfoEntry module);
-void print_title(std::string hostname, std::string user);
+void print_title(InfoEntry user, InfoEntry hostname);

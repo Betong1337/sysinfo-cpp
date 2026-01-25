@@ -15,7 +15,7 @@ vector<string> read_file(const string& path) {
     ifstream file(path);
 
     if (!file) {
-        std::cerr << "Could not open file: " << path << std::endl;
+        throw runtime_error("Could not open file");
         return {};
     }
 
@@ -77,6 +77,10 @@ vector<string> splitstring(string str, char character) {
 
 void print_module(InfoEntry module) {
 
+    if (module.prefix.empty() && module.value.empty()) {
+        return;
+    }
+
     if (module.prefix == string("GPU: ")) {
         vector<string> gpus = splitstring(module.value, '|');
         for (const auto& gpu : gpus) cout << HEADER << module.prefix << RESET << gpu;
@@ -87,7 +91,7 @@ void print_module(InfoEntry module) {
     return;
 }
 
-void print_title(string hostname, string user) {
-    cout << HEADER << "=== " << user << "@" << hostname << " ===" << RESET << endl;
+void print_title(InfoEntry user, InfoEntry hostname) {
+    cout << HEADER << "=== " << user.value << "@" << hostname.value << " ===" << RESET << endl;
     return;
 }

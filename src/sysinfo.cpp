@@ -17,7 +17,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
 
-    InfoEntry username = parse_user();
+    InfoEntry user = parse_user();
     InfoEntry cpu = parse_cpu();
     InfoEntry ram = parse_ram();
     InfoEntry swap = parse_swap();
@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     InfoEntry kernel = parse_kernel();
     InfoEntry hostname = parse_hostname();
     InfoEntry uptime = parse_uptime();
-    InfoEntry gpu = parse_gpu();
+    InfoEntry gpu;
 
     string cmd;
 
@@ -43,6 +43,7 @@ int main(int argc, char **argv) {
     } else if (cmd == "--cpu") {
         print_module(cpu);
     } else if (cmd == "--gpu") {
+        gpu = parse_gpu();
         print_module(gpu);
     } else if (cmd == "--ram") {
         print_module(ram);
@@ -53,14 +54,17 @@ int main(int argc, char **argv) {
     } else if (cmd == "--hostname") {
         print_module(hostname);
     } else if (cmd == "--username") {
-        print_module(username);
+        print_module(user);
+    } else if (cmd == "--version" || cmd == "-v") {
+        cout << "sysinfo-cpp, v0.1" << endl;
     } else {
         if (parameter) cout << USAGE_MSG << endl;
     }
 
-    if (parameter) return 0;
+    if (parameter) return 1;
+    gpu = parse_gpu();
 
-    print_title(hostname.value, username.value);
+    print_title(hostname, user);
     print_module(os);
     print_module(kernel);
     print_module(cpu);
