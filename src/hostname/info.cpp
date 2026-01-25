@@ -10,6 +10,6 @@ using namespace std;
 
 InfoEntry parse_hostname() {
     InfoEntry result = get_info(HOSTNAME_PATH, "0");
-    result.prefix = "";
+    result.prefix = HOSTNAME_PREFIX;
     return result;
 }

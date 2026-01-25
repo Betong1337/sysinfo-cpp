@@ -1,5 +1,3 @@
-# Makefile för sysinfo-projektet
-
 # Compiler och flags
 CXX := g++
 CXXFLAGS := -g -std=c++20 -Wall -Wextra -Wpedantic -I./src
@@ -18,7 +16,8 @@ SRCS := $(wildcard $(SRC_DIR)/*.cpp) \
         $(wildcard $(SRC_DIR)/core/*.cpp) \
 		$(wildcard $(SRC_DIR)/ram/*.cpp) \
 		$(wildcard $(SRC_DIR)/hostname/*.cpp) \
-		$(wildcard $(SRC_DIR)/uptime/*.cpp)
+		$(wildcard $(SRC_DIR)/uptime/*.cpp) \
+		$(wildcard $(SRC_DIR)/user/*.cpp)
 
 # Objektfiler
 OBJS := $(SRCS:.cpp=.o)

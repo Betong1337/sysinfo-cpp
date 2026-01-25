@@ -1,5 +1,6 @@
 //core.cpp
 #include "core.h"
+#include "color.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -72,4 +73,21 @@ vector<string> splitstring(string str, char character) {
         seglist.push_back(segment);
     }
     return seglist;
+}
+
+void print_module(InfoEntry module) {
+
+    if (module.prefix == string("GPU: ")) {
+        vector<string> gpus = splitstring(module.value, '|');
+        for (const auto& gpu : gpus) cout << HEADER << module.prefix << RESET << gpu;
+        return;
+    }
+
+    cout << HEADER << module.prefix << RESET << module.value << endl;
+    return;
+}
+
+void print_title(string hostname, string user) {
+    cout << HEADER << "=== " << user << "@" << hostname << " ===" << RESET << endl;
+    return;
 }
