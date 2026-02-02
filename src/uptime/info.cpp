@@ -21,14 +21,17 @@ InfoEntry parse_uptime() {
     float hours = stof(uptime_split[0]) / 3600;
     int mins = (int)((hours - (int)hours) * 60);
 
+    string parsed_str;
+
     if (hours < 24) {
         if (hours < 1) {
             oss << " " << mins << " Minutes" << endl;
             result.value = oss.str();
             return result;
         }
-        oss << " " << (int) hours << " Hours, " << mins << " Minutes" << endl; 
-        result.value = oss.str();
+        oss << " " << (int) hours << " Hours, " << mins << " Minutes"; 
+        parsed_str = oss.str();
+        result.value = parsed_str;
         return result;
     }
 
@@ -36,6 +39,7 @@ InfoEntry parse_uptime() {
     hours -= days * 24;
 
     oss << " " << days <<  " Days, " << (int) hours << " Hours, " << mins << " Minutes";
-    result.value = oss.str();
+    parsed_str = oss.str();
+    result.value = parsed_str;
     return result;
 }

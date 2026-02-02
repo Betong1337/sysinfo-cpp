@@ -52,6 +52,10 @@ InfoEntry parse_ram() {
         << "(" << percentage_color << used_percent << "%" << RESET << ")";
     string parsed_str = oss.str();
 
+    if (!parsed_str.empty() && parsed_str.front() == '\n') {
+        parsed_str.erase(0, 1);
+    }
+
     result.prefix = RAM_PREFIX;
     result.value = parsed_str;
     return result;

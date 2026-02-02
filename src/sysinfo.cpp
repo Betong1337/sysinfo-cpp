@@ -60,16 +60,15 @@ int main(int argc, char **argv) {
     } else {
         if (parameter) cout << USAGE_MSG << endl;
     }
-
     if (parameter) return 1;
-    gpu = parse_gpu();
 
     print_title(hostname, user);
     print_module(os);
     print_module(kernel);
     print_module(cpu);
-    print_module(gpu);
     print_module(ram);
+    gpu = parse_gpu();
+    print_module(gpu);
     print_module(swap);
     print_module(uptime);
 

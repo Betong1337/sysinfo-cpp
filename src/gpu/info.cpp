@@ -3,9 +3,10 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include "info.h"
 #include <bits/stdc++.h>
 #include <sstream>
+
+#include "info.h"
 
 using namespace std;
 
@@ -37,6 +38,11 @@ InfoEntry parse_gpu() {
     }
     
     result = oss.str();
+
+    if (!result.empty() && result.front() == '\n') {
+        result.erase(0, 1);
+    }
+
 
     info.prefix = GPU_PREFIX;
     info.value = result;
