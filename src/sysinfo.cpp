@@ -12,6 +12,7 @@
 #include "core/core.h"
 #include "core/color.h"
 #include "user/info.h"
+#include "disk/info.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ int main(int argc, char **argv) {
     InfoEntry kernel = parse_kernel();
     InfoEntry hostname = parse_hostname();
     InfoEntry uptime = parse_uptime();
+    InfoEntry disk = parse_disk();
     InfoEntry gpu;
 
     string cmd;
@@ -62,15 +64,16 @@ int main(int argc, char **argv) {
     }
     if (parameter) return 1;
 
-    print_title(hostname, user);
+    print_title(user, hostname);
     print_module(os);
     print_module(kernel);
     print_module(cpu);
     print_module(ram);
-    gpu = parse_gpu();
-    print_module(gpu);
     print_module(swap);
+    print_module(disk);
     print_module(uptime);
+    gpu = parse_gpu();
+    print_module(gpu);;
 
     return 0;
 }

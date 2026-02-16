@@ -17,3 +17,4 @@ InfoEntry get_info(std::string PATH, std::string INFO_TYPE);
 std::vector<std::string> splitstring(std::string str, char character);
 void print_module(InfoEntry module);
 void print_title(InfoEntry user, InfoEntry hostname);
+const char* get_percentage_color(const int used_percent);

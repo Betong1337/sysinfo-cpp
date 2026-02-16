@@ -19,4 +19,3 @@ std::string removesuffix(std::string input);
 float kbTOgb(std::string input);
 InfoEntry parse_ram();
 InfoEntry parse_swap();
-const char* get_percentage_color(int used_percent);

@@ -95,3 +95,13 @@ void print_title(InfoEntry user, InfoEntry hostname) {
     cout << HEADER << "=== " << user.value << "@" << hostname.value << " ===" << RESET << endl;
     return;
 }
+
+const char* get_percentage_color(const int used_percent) {
+    if (used_percent < 50) {
+        return GREEN;
+    } else if (used_percent > 49 && used_percent < 80) {
+        return YELLOW;
+    } else {
+        return RED;
+    }
+}

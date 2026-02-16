@@ -17,7 +17,8 @@ SRCS := $(wildcard $(SRC_DIR)/*.cpp) \
 		$(wildcard $(SRC_DIR)/ram/*.cpp) \
 		$(wildcard $(SRC_DIR)/hostname/*.cpp) \
 		$(wildcard $(SRC_DIR)/uptime/*.cpp) \
-		$(wildcard $(SRC_DIR)/user/*.cpp)
+		$(wildcard $(SRC_DIR)/user/*.cpp) \
+		$(wildcard $(SRC_DIR)/disk/*.cpp)
 
 # Objektfiler
 OBJS := $(SRCS:.cpp=.o)

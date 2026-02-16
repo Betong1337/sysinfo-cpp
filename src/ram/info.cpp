@@ -21,16 +21,6 @@ float kbTOgb(std::string input) {
     return result;
 }
 
-const char* get_percentage_color(const int used_percent) {
-    if (used_percent < 50) {
-        return GREEN;
-    } else if (used_percent > 49 && used_percent < 80) {
-        return YELLOW;
-    } else {
-        return RED;
-    }
-}
-
 InfoEntry parse_ram() {
     InfoEntry result;
     InfoEntry memtotal = get_info(RAM_PATH, RAM_MEMTOTAL);
