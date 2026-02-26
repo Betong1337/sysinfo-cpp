@@ -42,6 +42,14 @@ The program can display ASCII-art based on your Linux distribution.
 
 The program will automatically display the new ASCII-art when running. Contributions with more ASCII-art distributions are welcome!
 
+## Compile / Build
+
+To compile sysinfo-cpp:
+
+1. Open a terminal and navigate to the project folder.
+2. When in the project folder write: `make`.
+3. `./sysinfo` to run.
+
 ## License
 
 This project is licensed under the **MIT License**.
