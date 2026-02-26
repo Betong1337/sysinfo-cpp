@@ -50,6 +50,8 @@ int main(int argc, char **argv) {
         print_module(gpu);
     } else if (cmd == "--ram") {
         print_module(ram);
+    } else if (cmd == "--disk") {
+        print_module(disk);
     } else if (cmd == "--swap") {
         print_module(swap);
     } else if (cmd == "--uptime") {
@@ -64,7 +66,9 @@ int main(int argc, char **argv) {
         if (parameter) cout << USAGE_MSG << endl;
     }
     if (parameter) return 1;
+
     printAscii(os);
+
     print_title(user, hostname);
     print_module(os);
     print_module(kernel);

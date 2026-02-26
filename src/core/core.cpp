@@ -83,7 +83,7 @@ void print_module(InfoEntry module) {
 
     if (module.prefix == string("GPU: ")) {
         vector<string> gpus = splitstring(module.value, '|');
-        for (const auto& gpu : gpus) cout << HEADER << module.prefix << RESET << gpu;
+        for (const auto& gpu : gpus) cout << HEADER << module.prefix << RESET << gpu << endl;
         return;
     }
 

@@ -52,6 +52,7 @@ Mkfile.old
 dkms.conf
 sysinfo
 .vscode/
+.vscode
 PKGBUILD
 pkg/
 DEBIAN/

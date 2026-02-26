@@ -24,7 +24,6 @@ InfoEntry parse_disk() {
 
     unsigned long long total = (stat.f_blocks * stat.f_frsize) / (1024*1024*1024);
     unsigned long long free  = (stat.f_bfree  * stat.f_frsize) / (1024*1024*1024);
-    unsigned long long avail = (stat.f_bavail * stat.f_frsize) / (1024*1024*1024);
 
     unsigned long long used = total - free;
 
