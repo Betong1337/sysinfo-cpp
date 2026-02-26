@@ -25,7 +25,7 @@ InfoEntry parse_uptime() {
 
     if (hours < 24) {
         if (hours < 1) {
-            oss << " " << mins << " Minutes" << endl;
+            oss << " " << mins << " Minutes";
             result.value = oss.str();
             return result;
         }

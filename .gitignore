@@ -55,14 +55,12 @@ sysinfo
 PKGBUILD
 pkg/
 DEBIAN/
-core/info.o
-cpu/info.o
-gpu/info.o
-hostname/info.o
-os/info.o
-ram/info.o
-uptime/info.o
-user/info.o
+src/core.o
+src/cpu/info.o
+src/gpu/info.o 
+src/os/info.o
+src/ram/info.o
+src/uptime/info.o
 info.o
 sysinfo
 
