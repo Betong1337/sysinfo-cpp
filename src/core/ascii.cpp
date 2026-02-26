@@ -8,13 +8,23 @@ void printAscii(InfoEntry os) {
 
     string sub = os_raw.substr(0, pos);
 
-    string fileName = "src/asciiart/" + sub + ".txt";
+    string path = "src/asciiart/";
+    string fileType = ".txt";
+    string LinuxPath = path + "Linux" + fileType;
+
+    string fileName = path + sub + fileType;
+
     ifstream file(fileName);
 
     if (!file) {
-        ifstream file("asciiart/Linux.txt");
+        file.open(LinuxPath);
     }
-    
+
+    if (!file) {
+        cerr << "Could not open any file!" << endl;
+        return;
+    }
+
     string line;
     while (getline(file, line)) {
         cout << HEADER << line << "\n";
