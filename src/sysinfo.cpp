@@ -11,6 +11,7 @@
 #include "uptime/info.h"
 #include "core/core.h"
 #include "core/color.h"
+#include "core/ascii.h"
 #include "user/info.h"
 #include "disk/info.h"
 
@@ -63,7 +64,7 @@ int main(int argc, char **argv) {
         if (parameter) cout << USAGE_MSG << endl;
     }
     if (parameter) return 1;
-
+    printAscii(os);
     print_title(user, hostname);
     print_module(os);
     print_module(kernel);
