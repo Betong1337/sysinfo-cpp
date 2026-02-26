@@ -11,6 +11,7 @@
 #define OS_PREFIX "OS: "
 #define OS_NAME_CMP "NAME"
 #define OS_VERSION_CMP "VERSION"
+#define OS_NAME_ID_CMP "ID"
 #define OS_ERROR "Error: Could not print OS..."
 
 #define OS_PATH          "/etc/os-release"
@@ -18,3 +19,4 @@
 
 InfoEntry parse_os();
 InfoEntry parse_kernel();
+InfoEntry parse_os_id();

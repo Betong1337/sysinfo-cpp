@@ -24,6 +24,7 @@ int main(int argc, char **argv) {
     InfoEntry ram = parse_ram();
     InfoEntry swap = parse_swap();
     InfoEntry os = parse_os();
+    InfoEntry os_id = parse_os_id();
     InfoEntry kernel = parse_kernel();
     InfoEntry hostname = parse_hostname();
     InfoEntry uptime = parse_uptime();
@@ -67,7 +68,7 @@ int main(int argc, char **argv) {
     }
     if (parameter) return 1;
 
-    printAscii(os);
+    printAscii(os_id);
 
     print_title(user, hostname);
     print_module(os);
