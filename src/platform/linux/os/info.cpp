@@ -3,9 +3,9 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include "info.h"
 #include <bits/stdc++.h>
 #include <sstream>
+#include "headers/os.h"
 
 using namespace std;
 

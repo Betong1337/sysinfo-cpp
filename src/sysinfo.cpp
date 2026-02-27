@@ -3,15 +3,14 @@
 #include <vector>
 #include <string>
 
-#include "platform/linux/cpu/info.h"
-#include "platform/linux/gpu/info.h"
-#include "platform/linux/os/info.h"
-#include "platform/linux/hostname/info.h"
-#include "platform/linux/ram/info.h"
-#include "platform/linux/uptime/info.h"
-#include "platform/linux/core/core.h"
-#include "platform/linux/user/info.h"
-#include "platform/linux/disk/info.h"
+#include "headers/cpu.h"
+#include "headers/disk.h"
+#include "headers/gpu.h"
+#include "headers/hostname.h"
+#include "headers/os.h"
+#include "headers/ram.h"
+#include "headers/uptime.h"
+#include "headers/user.h"
 #include "core/color.h"
 #include "core/ascii.h"
 

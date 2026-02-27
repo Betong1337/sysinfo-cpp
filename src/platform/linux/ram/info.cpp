@@ -3,9 +3,9 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include "info.h"
 #include <bits/stdc++.h>
 #include <sstream>
+#include "headers/ram.h"
 
 using namespace std;
 

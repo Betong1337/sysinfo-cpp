@@ -6,7 +6,7 @@
 #include <bits/stdc++.h>
 #include <sstream>
 
-#include "info.h"
+#include "headers/gpu.h"
 
 using namespace std;
 

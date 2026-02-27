@@ -1,10 +1,5 @@
 # sysinfo-cpp
 
-## REFACTOR IN PROGRSS
-
-I'm refactoring the whole project to work on windows and mac aswell. So if you want to use the linux version you can
-download find it under `sysinfo-linux` in this repo.
-
 **sysinfo-cpp** is a lightweight system information tool written in C++, inspired by fastfetch but with a simpler implementation. It displays system information in the terminal and can also show ASCII-art depending on your Linux distribution.
 
 ## Features

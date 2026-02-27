@@ -6,7 +6,7 @@
 #include <bits/stdc++.h>
 #include <sstream>
 #include <sys/statvfs.h>
-#include "info.h"
+#include "headers/disk.h"
 
 using namespace std;
 
