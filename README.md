@@ -46,9 +46,26 @@ The program will automatically display the new ASCII-art when running. Contribut
 
 To compile sysinfo-cpp:
 
-1. Open a terminal and navigate to the project folder.
-2. When in the project folder write: `make`.
-3. `./sysinfo` to run.
+  1. Open a terminal and navigate to the project folder.
+  2. When in the project folder write: `make`.
+  3. `./sysinfo` to run.
+
+## Mac Support
+
+The macOS version isn’t implemented yet. Anyone is welcome to contribute!  
+To add support:
+
+  1. Follow the existing project structure: `src/platform/mac/`.  
+  2. Implement all parser functions (`parse_cpu()`, `parse_gpu()`, `parse_ram()`, `parse_swap()`, `parse_os()`, `parse_kernel()`, `parse_hostname()`, `parse_uptime()`, `parse_disk()`,     `parse_user()`) in separate `.cpp` files.  
+  3. Keep the function names the same as in the Linux and Windows versions.  
+  4. Include only the common header files from `headers/`.  
+  5. The Makefile will automatically compile the correct platform files.
+
+## Windows Support (Work in Progress)
+
+The Windows version is currently a work in progress.  
+Once implemented, parser functions should be added in `src/platform/windows/` using Windows-specific APIs (WMI, DXGI, registry, etc.).  
+Keep function names consistent with the Linux version. The Makefile will compile only the Windows files.
 
 ## License
 
