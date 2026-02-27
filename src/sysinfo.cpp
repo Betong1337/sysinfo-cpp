@@ -3,17 +3,17 @@
 #include <vector>
 #include <string>
 
-#include "cpu/info.h"
-#include "gpu/info.h"
-#include "os/info.h"
-#include "hostname/info.h"
-#include "ram/info.h"
-#include "uptime/info.h"
-#include "core/core.h"
+#include "platform/linux/cpu/info.h"
+#include "platform/linux/gpu/info.h"
+#include "platform/linux/os/info.h"
+#include "platform/linux/hostname/info.h"
+#include "platform/linux/ram/info.h"
+#include "platform/linux/uptime/info.h"
+#include "platform/linux/core/core.h"
+#include "platform/linux/user/info.h"
+#include "platform/linux/disk/info.h"
 #include "core/color.h"
 #include "core/ascii.h"
-#include "user/info.h"
-#include "disk/info.h"
 
 using namespace std;
 
@@ -61,6 +61,8 @@ int main(int argc, char **argv) {
         print_module(hostname);
     } else if (cmd == "--username") {
         print_module(user);
+    } else if (cmd == "--art") {
+        printAscii(os_id);
     } else if (cmd == "--version" || cmd == "-v") {
         cout << "sysinfo-cpp, v0.1" << endl;
     } else {
@@ -69,8 +71,8 @@ int main(int argc, char **argv) {
     if (parameter) return 1;
 
     printAscii(os_id);
-
     print_title(user, hostname);
+
     print_module(os);
     print_module(kernel);
     print_module(cpu);

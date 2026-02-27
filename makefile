@@ -1,43 +1,40 @@
-# Compiler och flags
 CXX := g++
 CXXFLAGS := -g -std=c++20 -Wall -Wextra -Wpedantic -I./src
 
-# Output-program
 TARGET := sysinfo
-
-# Sökvägar
 SRC_DIR := src
 
-# Alla cpp-filer i src och underkataloger
-SRCS := $(wildcard $(SRC_DIR)/*.cpp) \
-        $(wildcard $(SRC_DIR)/cpu/*.cpp) \
-        $(wildcard $(SRC_DIR)/gpu/*.cpp) \
-        $(wildcard $(SRC_DIR)/os/*.cpp) \
-        $(wildcard $(SRC_DIR)/core/*.cpp) \
-		$(wildcard $(SRC_DIR)/ram/*.cpp) \
-		$(wildcard $(SRC_DIR)/hostname/*.cpp) \
-		$(wildcard $(SRC_DIR)/uptime/*.cpp) \
-		$(wildcard $(SRC_DIR)/user/*.cpp) \
-		$(wildcard $(SRC_DIR)/disk/*.cpp)
+UNAME_S := $(shell uname -s)
 
-# Objektfiler
+COMMON_SRCS := \
+	$(wildcard $(SRC_DIR)/*.cpp) \
+	$(wildcard $(SRC_DIR)/core/*.cpp)
+
+ifeq ($(UNAME_S),Linux)
+	PLATFORM_SRCS := $(wildcard $(SRC_DIR)/platform/linux/*.cpp)
+endif
+
+ifeq ($(UNAME_S),Darwin)
+	PLATFORM_SRCS := $(wildcard $(SRC_DIR)/platform/mac/*.cpp)
+endif
+
+ifeq ($(OS),Windows_NT)
+	PLATFORM_SRCS := $(wildcard $(SRC_DIR)/platform/windows/*.cpp)
+endif
+
+SRCS := $(COMMON_SRCS) $(PLATFORM_SRCS)
 OBJS := $(SRCS:.cpp=.o)
 
-# Standardmål
 all: $(TARGET)
 
-# Länka ihop objektfilerna till programmet
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-# Kompilera cpp till objektfiler
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Rensa upp objektfiler och program
 clean:
 	rm -f $(OBJS) $(TARGET)
 
-# Kör programmet direkt
 run: $(TARGET)
 	./$(TARGET)

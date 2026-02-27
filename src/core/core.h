@@ -8,7 +8,7 @@ struct InfoEntry {
     std::string value;
 };
 
-#define USAGE_MSG "Usage: [ --user | --hostname | --cpu | --gpu | --mem | --swap | --all | --uptime | --version | --help]" 
+#define USAGE_MSG "Usage: [ --username | --hostname | --cpu | --gpu | --ram | --swap | --uptime | --art | --version | --help]" 
 
 std::vector<std::string> read_file(const std::string& path);
 std::string ltrim(const std::string& s);
