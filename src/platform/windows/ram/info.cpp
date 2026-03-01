@@ -22,7 +22,9 @@ InfoEntry parse_ram() {
     DWORDLONG usedRAM =
         (statex.ullTotalPhys - statex.ullAvailPhys) / (1024 * 1024 * 1024);
 
-    const int used_percent = (usedRAM / totalRAM) * 100;
+    const int used_percent =
+    static_cast<double>(usedRAM) / totalRAM * 100;
+    
     const char* percentage_color = get_percentage_color(used_percent);
 
     oss << usedRAM << " GB / " << usedRAM << " GB "

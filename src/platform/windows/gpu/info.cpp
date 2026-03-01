@@ -12,6 +12,6 @@ InfoEntry parse_gpu() {
     InfoEntry result;
 
     result.prefix = GPU_PREFIX;
-    result.value = "32 GB / 500 GB (12%)";
+    result.value = "AMD RX 7900 XT";
     return result;
 }

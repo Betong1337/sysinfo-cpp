@@ -10,8 +10,11 @@ using namespace std;
 
 InfoEntry parse_hostname() {
     InfoEntry result;
+    char buffer[MAX_COMPUTERNAME_LENGTH + 1];
+    DWORD size = sizeof(buffer);
 
-    result.prefix = HOSTNAME_PREFIX;
-    result.value = "laptop";
+    GetComputerNameA(buffer, &size);
+    result.value = string(buffer);
+    result.prefix = USER_PREFIX;
     return result;
 }
