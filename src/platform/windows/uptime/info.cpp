@@ -38,5 +38,6 @@ InfoEntry parse_uptime() {
     oss << " " << days <<  " Days, " << (int) hours << " Hours, " << minutes << " Minutes";
     parsed_str = oss.str();
     result.value = parsed_str;
+    result.prefix = UPTIME_PREFIX;
     return result;
 }

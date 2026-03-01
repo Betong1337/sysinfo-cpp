@@ -38,7 +38,7 @@ InfoEntry parse_disk() {
         
         const char* percentage_color = get_percentage_color(percent);
 
-        oss << to_string(usedGB) << "GB / " << to_string(totalGB) << "GB" << "(" << percentage_color << percent <<
+        oss << to_string(usedGB) << "GB / " << to_string(totalGB) << "GB" << " (" << percentage_color << percent <<
         "%" << RESET << ")";
         string parsed_str = oss.str();
         result.value = parsed_str;

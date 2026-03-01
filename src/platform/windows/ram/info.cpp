@@ -27,7 +27,7 @@ InfoEntry parse_ram() {
     
     const char* percentage_color = get_percentage_color(used_percent);
 
-    oss << usedRAM << " GB / " << usedRAM << " GB "
+    oss << usedRAM << " GB / " << totalRAM << " GB "
         << "(" << percentage_color << used_percent << "%" << RESET << ")";
     string parsed_str = oss.str();
 
