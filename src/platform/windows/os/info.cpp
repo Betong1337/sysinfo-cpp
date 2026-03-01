@@ -19,7 +19,7 @@ InfoEntry parse_os() {
 
     typedef LONG(WINAPI* RtlGetVersionPtr)(PRTL_OSVERSIONINFOW);
     HMODULE hMod = GetModuleHandleW(L"ntdll.dll");
-    RtlGetVersionPtr fxPtr = (RtlGetVersionPtr)GetProcAddress(hMod, "RtlGetVersion");
+    RtlGetVersionPtr fxPtr = reinterpret_cast<RtlGetVersionPtr>(GetProcAddress(hMod, "RtlGetVersion"));
 
     if (fxPtr != nullptr) {
         fxPtr((PRTL_OSVERSIONINFOW)&osInfo);
@@ -51,8 +51,7 @@ InfoEntry parse_kernel() {
 
     typedef LONG(WINAPI* RtlGetVersionPtr)(PRTL_OSVERSIONINFOW);
     HMODULE hMod = GetModuleHandleW(L"ntdll.dll");
-    RtlGetVersionPtr fxPtr =
-        (RtlGetVersionPtr)GetProcAddress(hMod, "RtlGetVersion");
+    RtlGetVersionPtr fxPtr = reinterpret_cast<RtlGetVersionPtr>(GetProcAddress(hMod, "RtlGetVersion"));
 
     if (fxPtr != nullptr) {
         fxPtr((PRTL_OSVERSIONINFOW)&osInfo);

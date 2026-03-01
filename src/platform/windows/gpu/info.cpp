@@ -54,7 +54,7 @@ InfoEntry parse_gpu() {
         NULL,
         NULL,
         0,
-        NULL,
+        0,
         0,
         0,
         &pSvc);
@@ -99,7 +99,7 @@ InfoEntry parse_gpu() {
     ULONG uReturn = 0;
 
     while (pEnumerator) {
-        HRESULT hr = pEnumerator->Next(WBEM_INFINITE, 1, &pclsObj, &uReturn);
+        HRESULT hr = pEnumerator->Next((LONG)WBEM_INFINITE, 1, &pclsObj, &uReturn);
         if (!uReturn)
             break;
 
