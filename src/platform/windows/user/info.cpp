@@ -22,5 +22,6 @@ InfoEntry parse_user() {
         return result;
     }
 
-    return "Unknown";
+    result.value = "Unknown";
+    return result;
 }

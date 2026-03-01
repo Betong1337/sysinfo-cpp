@@ -28,8 +28,8 @@ InfoEntry parse_os() {
         result.value = parsed_str;
         return result;
     }
-
-    return "Unknown Windows";
+    result.value = "Unknown Windows";
+    return result;
 }
 
 InfoEntry parse_os_id() {
@@ -64,5 +64,6 @@ InfoEntry parse_kernel() {
         return result;
     }
 
-    return "Unknown Kernel";
+    result.value = "Unknown Kernel";
+    return result;
 }

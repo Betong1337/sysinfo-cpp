@@ -27,6 +27,6 @@ InfoEntry parse_cpu() {
         result.value = string(cpuName);
         return result;
     }
-
-    return "Unknown CPU";
+    result.value = "Unknown CPU";
+    return result;
 }
