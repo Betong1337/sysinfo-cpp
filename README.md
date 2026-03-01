@@ -47,8 +47,8 @@ The program will automatically display the new ASCII-art when running. Contribut
 Linux:
   1. Open a terminal and navigate to the project folder.
   2. When in the project folder write: `make`.
-  3. In order for the asciiart to work run command: `sudo make install` 
-  3. `./sysinfo` to run.
+  3. In order for the asciiart to work and install it run command: `sudo make install` 
+  3. `sysinfo` to run.
 Windows:
   Not supported yet.
 Mac:
