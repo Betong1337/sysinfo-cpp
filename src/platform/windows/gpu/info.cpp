@@ -10,8 +10,6 @@
 #include <string>
 #include <vector>
 
-#pragma comment(lib, "wbemuuid.lib")
-
 using namespace std;
 
 InfoEntry parse_gpu() {
@@ -21,10 +19,10 @@ InfoEntry parse_gpu() {
     HRESULT hres;
 
     hres = CoInitializeEx(0, COINIT_MULTITHREADED);
-    if (FAILED(hres))
+    if (FAILED(hres)) {
         result.value = "N/A";
         return result;
-
+    }
     hres = CoInitializeSecurity(
         NULL,
         -1,
@@ -46,7 +44,8 @@ InfoEntry parse_gpu() {
 
     if (FAILED(hres)) {
         CoUninitialize();
-        return "N/A";
+        result.value = "N/A";
+        return result;
     }
 
     IWbemServices* pSvc = nullptr;
@@ -63,7 +62,8 @@ InfoEntry parse_gpu() {
     if (FAILED(hres)) {
         pLoc->Release();
         CoUninitialize();
-        return "N/A";
+        result.value = "N/A";
+        return result;
     }
 
     CoSetProxyBlanket(
@@ -89,7 +89,8 @@ InfoEntry parse_gpu() {
         pSvc->Release();
         pLoc->Release();
         CoUninitialize();
-        return "N/A";
+        result.value = "N/A";
+        return result;
     }
 
     vector<string> gpus;

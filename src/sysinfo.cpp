@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
     } else if (cmd == "--art") {
         printAscii(os_id);
     } else if (cmd == "--version" || cmd == "-v") {
-        cout << "sysinfo-cpp, v0.1" << endl;
+        cout << "sysinfo-cpp, v0.2" << endl;
     } else {
         if (parameter) cout << USAGE_MSG << endl;
     }

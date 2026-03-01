@@ -38,8 +38,6 @@ InfoEntry parse_ram() {
 
 InfoEntry parse_swap() {
     InfoEntry result;
-
-    result.prefix = SWAP_PREFIX;
-    result.value = "0 GB / 8GB (0%)";
+    result.value = "";
     return result;
 }

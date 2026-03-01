@@ -9,9 +9,11 @@ void printAscii(InfoEntry os) {
 
     string sub = os_raw.substr(0, pos);
 
-    //string path = "/usr/local/share/sysinfo/asciiart/";
-    string path = "src/asciiart/";
+    string path = "/usr/local/share/sysinfo/asciiart/";
 
+    if (sub == "windows") {
+        path = "C:\\Program Files\\sysinfo\\asciiart\\";
+    }
 
     string fileType = ".txt";
     string LinuxPath = path + "linux" + fileType;
@@ -25,7 +27,7 @@ void printAscii(InfoEntry os) {
     }
 
     if (!file) {
-        cerr << "Could not open any file!" << endl;
+        cerr << "Could not open any file!" << fileName << endl;
         return;
     }
 

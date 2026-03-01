@@ -2,6 +2,8 @@
 
 **sysinfo-cpp** is a lightweight system information tool written in C++, inspired by fastfetch but with a simpler implementation. It displays system information in the terminal and can also show ASCII-art depending on your Linux distribution.
 
+- Supports Linux and Windows.
+
 ## Features
 
 - Display information about the operating system, kernel, CPU, GPU, RAM, disk, swap, uptime, hostname, and user.  
@@ -9,7 +11,8 @@
 - Simple to contribute with your own distributions.  
 - Minimal and fast, with no external dependencies.
 
-![Description of image](https://i.imgur.com/XKxbnTh.png)
+![Linux Version](https://i.imgur.com/XKxbnTh.png)
+![Windows Version](https://i.imgur.com/AqO9vLl.png)
 
 ## Commands
 
@@ -25,7 +28,7 @@
 | `--uptime`    | Display system uptime |
 | `--hostname`  | Display the computer's hostname |
 | `--username`  | Display the current user |
-| `--version` / `-v` | Display program version (v0.1) |
+| `--version` / `-v` | Display program version (v0.2) |
 
 If an invalid command is provided, a usage message will be displayed.
 
@@ -33,7 +36,7 @@ If an invalid command is provided, a usage message will be displayed.
 
 The program can display ASCII-art based on your Linux distribution.
 
-- If no specific ASCII-art is available, `"Linux"` will be shown.  
+- If no specific ASCII-art is available, `Linux` will be shown.  
 - To add your own distribution:
   1. Find or create ASCII-art using a website like [ASCII Art Generator](https://www.ascii-art.de/) or similar.  
   2. Copy the result into a text file.  
@@ -49,8 +52,22 @@ Linux:
   2. When in the project folder write: `make`.
   3. In order for the asciiart to work and install it run command: `sudo make install` 
   3. `sysinfo` to run.
+
 Windows:
-  Not supported yet.
+  1. Download MSYS2 from https://www.msys.org
+  2. Install it on `C:\msys64`
+  3. Start `MSYS2 MINGW64` (not `UCRT64` or the other ones)
+  4. In MinGW64 shell:
+      `pacman -Syu` then restart shell.
+      `pacman -Su`
+      `pacman -S git make mingw-w64-x86_64-gcc`
+  5. Add `C:\msys64\mingw64\bin` and `C:\Program Files\sysinfo` in enviroment variable `PATH`. 
+  6. `git clone https://github.com/Betong1337/sysinfo-cpp`
+     `cd sysinfo-cpp`
+     `make`
+  7. Restart the shell with admin permission then: `make install_windows`
+  8. Done. `sysinfo` to run.
+
 Mac:
   Not supported yet.
 
@@ -64,12 +81,6 @@ To add support:
   3. Keep the function names the same as in the Linux and Windows versions.  
   4. Include only the common header files from `headers/`.  
   5. The Makefile will automatically compile the correct platform files.
-
-## Windows Support (Work in Progress)
-
-The Windows version is currently a work in progress.  
-Once implemented, parser functions should be added in `src/platform/windows/` using Windows-specific APIs (WMI, DXGI, registry, etc.).  
-Keep function names consistent with the Linux version. The Makefile will compile only the Windows files.
 
 ## License
 

@@ -13,6 +13,7 @@ InfoEntry parse_uptime() {
     InfoEntry result;
     ostringstream oss;
     string parsed_str;
+    result.prefix = UPTIME_PREFIX;
 
     ULONGLONG ms = GetTickCount64();
     ULONGLONG seconds = ms / 1000;
@@ -38,6 +39,5 @@ InfoEntry parse_uptime() {
     oss << " " << days <<  " Days, " << (int) hours << " Hours, " << minutes << " Minutes";
     parsed_str = oss.str();
     result.value = parsed_str;
-    result.prefix = UPTIME_PREFIX;
     return result;
 }
