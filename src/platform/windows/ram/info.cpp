@@ -5,14 +5,32 @@
 #include <string>
 #include "headers/ram.h"
 #include <bits/stdc++.h>
+#include <windows.h>
 
 using namespace std;
 
 InfoEntry parse_ram() {
     InfoEntry result;
+    ostringstream oss;
+
+    MEMORYSTATUSEX statex;
+    statex.dwLength = sizeof(statex);
+
+    GlobalMemoryStatusEx(&statex);
+
+    DWORDLONG totalRAM = statex.ullTotalPhys / (1024 * 1024 * 1024);
+    DWORDLONG usedRAM =
+        (statex.ullTotalPhys - statex.ullAvailPhys) / (1024 * 1024 * 1024);
+
+    const int used_percent = (usedRAM / totalRAM) * 100;
+    const char* percentage_color = get_percentage_color(used_percent);
+
+    oss << usedRAM << " GB / " << usedRAM << " GB "
+        << "(" << percentage_color << used_percent << "%" << RESET << ")";
+    string parsed_str = oss.str();
 
     result.prefix = RAM_PREFIX;
-    result.value = "4 GB / 16 GB (12%)";
+    result.value = parsed_str;
     return result;
 }
 
