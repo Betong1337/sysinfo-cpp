@@ -8,7 +8,7 @@
 
 using namespace std;
 
-InfoEntry parse_os() {
+InfoEntry parse_ram() {
     InfoEntry result;
 
     result.prefix = RAM_PREFIX;

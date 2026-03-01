@@ -29,4 +29,5 @@ InfoEntry parse_kernel() {
 
     result.value = "Windows NT";
     result.prefix = KERNEL_VER_PREFIX;
+    return result;
 }
