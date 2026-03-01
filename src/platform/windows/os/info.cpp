@@ -57,9 +57,7 @@ InfoEntry parse_kernel() {
     if (fxPtr != nullptr) {
         fxPtr((PRTL_OSVERSIONINFOW)&osInfo);
 
-        oss "NT " << to_string(osInfo.dwMajorVersion) << "." <<
-            to_string(osInfo.dwMinorVersion) <<
-            "." << to_string(osInfo.dwBuildNumber);
+        oss << "NT " << to_string(osInfo.dwMajorVersion) << "." << to_string(osInfo.dwMinorVersion) << "." << to_string(osInfo.dwBuildNumber);
         string parse_str = oss.str();
         result.value = parse_str;
         return result;
