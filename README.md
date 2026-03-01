@@ -44,12 +44,15 @@ The program will automatically display the new ASCII-art when running. Contribut
 
 ## Compile / Build
 
-To compile sysinfo-cpp:
-
+Linux:
   1. Open a terminal and navigate to the project folder.
   2. When in the project folder write: `make`.
   3. In order for the asciiart to work run command: `sudo make install` 
   3. `./sysinfo` to run.
+Windows:
+  Not supported yet.
+Mac:
+  Not supported yet.
 
 ## Mac Support
 
