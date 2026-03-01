@@ -5,6 +5,7 @@
 #include <string>
 #include "headers/hostname.h"
 #include <bits/stdc++.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -15,6 +16,6 @@ InfoEntry parse_hostname() {
 
     GetComputerNameA(buffer, &size);
     result.value = string(buffer);
-    result.prefix = USER_PREFIX;
+    result.prefix = HOSTNAME_PREFIX;
     return result;
 }
