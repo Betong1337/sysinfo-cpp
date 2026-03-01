@@ -12,6 +12,7 @@ using namespace std;
 InfoEntry parse_uptime() {
     InfoEntry result;
     ostringstream oss;
+    string parsed_str;
 
     ULONGLONG ms = GetTickCount64();
     ULONGLONG seconds = ms / 1000;
@@ -24,17 +25,17 @@ InfoEntry parse_uptime() {
 
     if (hours < 24) {
         if (hours < 1) {
-            oss << " " << mins << " Minutes";
+            oss << " " << minutes << " Minutes";
             result.value = oss.str();
             return result;
         }
-        oss << " " << (int) hours << " Hours, " << mins << " Minutes"; 
+        oss << " " << (int) hours << " Hours, " << minutes << " Minutes"; 
         parsed_str = oss.str();
         result.value = parsed_str;
         return result;
     }
 
-    oss << " " << days <<  " Days, " << (int) hours << " Hours, " << mins << " Minutes";
+    oss << " " << days <<  " Days, " << (int) hours << " Hours, " << minutes << " Minutes";
     parsed_str = oss.str();
     result.value = parsed_str;
     return result;
