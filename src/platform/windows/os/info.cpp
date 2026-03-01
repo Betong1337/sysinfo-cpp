@@ -21,4 +21,12 @@ InfoEntry parse_os_id() {
 
     result.prefix = OS_PREFIX;
     result.value = "windows";
+    return result;
+}
+
+InfoEntry parse_kernel() {
+    InfoEntry result;
+
+    result.value = "Windows NT";
+    result.prefix = KERNEL_VER_PREFIX;
 }
