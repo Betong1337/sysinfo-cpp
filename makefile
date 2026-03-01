@@ -1,12 +1,14 @@
+# Compiler och flags
 CXX := g++
 CXXFLAGS := -g -std=c++20 -Wall -Wextra -Wpedantic -I./src
 
+# Output-program
 TARGET := sysinfo
 SRC_DIR := src
 
+# --- Detect platform directory ---
 UNAME_S := $(shell uname -s)
 
-# --- Detect platform directory ---
 ifeq ($(UNAME_S),Linux)
 	PLATFORM_DIR := $(SRC_DIR)/platform/linux
 endif
@@ -43,7 +45,19 @@ clean:
 run: $(TARGET)
 	./$(TARGET)
 
-# Debug helper
+# --- Install ---
+PREFIX := /usr/local
+BINDIR := $(PREFIX)/bin
+DATADIR := $(PREFIX)/share/sysinfo/asciiart
+
+install: $(TARGET)
+	@echo "Installing $(TARGET) to $(BINDIR)"
+	install -Dm755 $(TARGET) $(BINDIR)/$(TARGET)
+	@echo "Installing ascii-art to $(DATADIR)"
+	install -d $(DATADIR)
+	install -m644 src/asciiart/*.txt $(DATADIR)/
+
+# --- Debug helper ---
 print:
 	@echo "Platform dir: $(PLATFORM_DIR)"
 	@echo "Sources:"

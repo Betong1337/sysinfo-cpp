@@ -9,9 +9,9 @@ void printAscii(InfoEntry os) {
 
     string sub = os_raw.substr(0, pos);
 
-    string path = "src/asciiart/";
+    string path = "/usr/local/share/sysinfo/asciiart/";
     string fileType = ".txt";
-    string LinuxPath = path + "Linux" + fileType;
+    string LinuxPath = path + "linux" + fileType;
 
     string fileName = path + sub + fileType;
 

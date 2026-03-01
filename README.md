@@ -48,6 +48,7 @@ To compile sysinfo-cpp:
 
   1. Open a terminal and navigate to the project folder.
   2. When in the project folder write: `make`.
+  3. In order for the asciiart to work run command: `sudo make install` 
   3. `./sysinfo` to run.
 
 ## Mac Support
