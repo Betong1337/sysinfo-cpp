@@ -28,6 +28,7 @@
 | `--uptime`    | Display system uptime |
 | `--hostname`  | Display the computer's hostname |
 | `--username`  | Display the current user |
+| `--art`       | Display the ascii art    |
 | `--version` / `-v` | Display program version (v0.2) |
 
 If an invalid command is provided, a usage message will be displayed.
