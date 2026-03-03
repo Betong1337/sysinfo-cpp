@@ -48,28 +48,27 @@ The program will automatically display the new ASCII-art when running. Contribut
 
 ## Compile / Build
 
-Linux:
+  ### Linux
   1. Open a terminal and navigate to the project folder.
   2. When in the project folder write: `make`.
   3. In order for the asciiart to work and install it run command: `sudo make install` 
   3. `sysinfo` to run.
 
-Windows:
+  ### Windows
   1. Download MSYS2 from https://www.msys.org
   2. Install it on `C:\msys64`
   3. Start `MSYS2 MINGW64` (not `UCRT64` or the other ones)
-  4. In MinGW64 shell:
-      `pacman -Syu` then restart shell.
-      `pacman -Su`
-      `pacman -S git make mingw-w64-x86_64-gcc`
-  5. Add `C:\msys64\mingw64\bin` and `C:\Program Files\sysinfo` in enviroment variable `PATH`. 
-  6. `git clone https://github.com/Betong1337/sysinfo-cpp`
+  4. In MinGW64 shell: `pacman -Syu` then restart shell.
+  5. `pacman -Su`
+  6. `pacman -S git make mingw-w64-x86_64-gcc`
+  7. Add `C:\msys64\mingw64\bin` and `C:\Program Files\sysinfo` in enviroment variable `PATH`. 
+  8. `git clone https://github.com/Betong1337/sysinfo-cpp`
      `cd sysinfo-cpp`
      `make`
-  7. Restart the shell with admin permission then: `make install_windows`
-  8. Done. `sysinfo` to run.
+  9. Restart the shell with admin permission then: `make install_windows`
+  10. Done. `sysinfo` to run.
 
-Mac:
+  ### Mac
   Not supported yet.
 
 ## Mac Support
