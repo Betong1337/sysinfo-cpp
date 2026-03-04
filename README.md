@@ -63,13 +63,10 @@ The program will automatically display the new ASCII-art when running. Contribut
   6. `pacman -S git make mingw-w64-x86_64-gcc`
   7. Add `C:\msys64\mingw64\bin` and `C:\Program Files\sysinfo` in enviroment variable `PATH`. 
   8. `git clone https://github.com/Betong1337/sysinfo-cpp`
-     `cd sysinfo-cpp`
-     `make`
-  9. Restart the shell with admin permission then: `make install_windows`
-  10. Done. `sysinfo` to run.
-
-  ### Mac
-  Not supported yet.
+  9. `cd sysinfo-cpp`
+  10. `make`
+  11. Restart the shell with admin permission then: `make install_windows`
+  12. Done. `sysinfo` to run.
 
 ## Mac Support
 
