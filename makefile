@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -g -std=c++20 -Wall -Wextra -Wpedantic -I./src
+CXXFLAGS := -g -std=c++20 -Wall -Wextra -Wpedantic -I./src -lcurl
 
 TARGET := sysinfo
 SRC_DIR := src

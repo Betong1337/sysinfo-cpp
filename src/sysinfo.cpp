@@ -13,6 +13,7 @@
 #include "headers/user.h"
 #include "core/color.h"
 #include "core/ascii.h"
+#include "headers/server.h"
 
 using namespace std;
 
@@ -28,8 +29,8 @@ int main(int argc, char **argv) {
     InfoEntry hostname = parse_hostname();
     InfoEntry uptime = parse_uptime();
     InfoEntry disk = parse_disk();
+    ConfInfo config = readConfig();
     InfoEntry gpu;
-
     string cmd;
 
     bool parameter = false;
@@ -37,6 +38,10 @@ int main(int argc, char **argv) {
     if (argc > 1) {
         parameter = true;
         cmd = argv[1];
+    }
+
+    if (config.server_mode == true) {
+        SendInfo(hostname, uptime, disk, ram);
     }
 
     if (cmd == "--os") {
@@ -69,6 +74,7 @@ int main(int argc, char **argv) {
     }
     if (parameter) return 1;
 
+    /*
     printAscii(os_id);
     print_title(user, hostname);
 
@@ -81,6 +87,6 @@ int main(int argc, char **argv) {
     print_module(uptime);
     gpu = parse_gpu();
     print_module(gpu);;
-
+    */
     return 0;
 }
