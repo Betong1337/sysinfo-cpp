@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ server.hostname }} - Server Monitor
+{% endblock %}
+
+
+{% block content %}
+
+<a
+    href="{{ url_for('dashboard') }}"
+    class="back"
+>
+    ← Back to servers
+</a>
+
+
+<div class="page-header">
+
+    <div>
+
+        <h1>
+            {{ server.hostname }}
+        </h1>
+
+        <p class="subtitle">
+            {{ server.ip }}
+        </p>
+
+    </div>
+
+
+    {% if online %}
+
+    <div class="status online large">
+        <span></span>
+        Online
+    </div>
+
+    {% else %}
+
+    <div class="status offline large">
+        <span></span>
+        Offline
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+<!-- Server information -->
+
+<div class="detail-grid">
+
+    <div class="detail-card">
+
+        <label>
+            RAM
+        </label>
+
+        <strong>
+            {{ server.ram }}
+        </strong>
+
+    </div>
+
+
+    <div class="detail-card">
+
+        <label>
+            SWAP
+        </label>
+
+        <strong>
+            {{ server.swap }}
+        </strong>
+
+    </div>
+
+
+    <div class="detail-card">
+
+        <label>
+            DISK
+        </label>
+
+        <strong>
+            {{ server.disk }}
+        </strong>
+
+    </div>
+
+
+    <div class="detail-card">
+
+        <label>
+            UPTIME
+        </label>
+
+        <strong>
+            {{ server.uptime }}
+        </strong>
+
+    </div>
+
+
+    <div class="detail-card">
+
+        <label>
+            LAST SEEN
+        </label>
+
+        <strong>
+            {{ last_seen }}
+        </strong>
+
+    </div>
+
+
+    <div class="detail-card">
+
+        <label>
+            IP ADDRESS
+        </label>
+
+        <strong>
+            {{ server.ip }}
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- Services -->
+
+<div class="panel">
+
+    <div class="eyebrow">
+        Services
+    </div>
+
+    <h2>
+        Assigned services
+    </h2>
+
+
+    <div class="service-list">
+
+        {% for service in services %}
+
+        <div class="service">
+
+            <span class="service-dot"></span>
+
+            <div class="service-info">
+
+                <strong>
+                    {{ service.name }}
+                </strong>
+
+
+                {% if service.description %}
+
+                <p>
+                    {{ service.description }}
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <p class="muted">
+            No services assigned to this server.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

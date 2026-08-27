@@ -18,18 +18,18 @@
 using namespace std;
 
 int main(int argc, char **argv) {
+    ConfInfo config = readConfig();
 
     InfoEntry user = parse_user();
     InfoEntry cpu = parse_cpu();
-    InfoEntry ram = parse_ram();
-    InfoEntry swap = parse_swap();
+    InfoEntry ram = parse_ram(config);
+    InfoEntry swap = parse_swap(config);
     InfoEntry os = parse_os();
     InfoEntry os_id = parse_os_id();
     InfoEntry kernel = parse_kernel();
     InfoEntry hostname = parse_hostname();
     InfoEntry uptime = parse_uptime();
-    InfoEntry disk = parse_disk();
-    ConfInfo config = readConfig();
+    InfoEntry disk = parse_disk(config);
     InfoEntry gpu;
     string cmd;
 
@@ -41,7 +41,10 @@ int main(int argc, char **argv) {
     }
 
     if (config.server_mode == true) {
-        SendInfo(hostname, uptime, disk, ram);
+        while (true) {
+            SendInfo(hostname, uptime, disk, ram, swap, config);
+            sleep(config.interval);
+        }
     }
 
     if (cmd == "--os") {
@@ -74,7 +77,6 @@ int main(int argc, char **argv) {
     }
     if (parameter) return 1;
 
-    /*
     printAscii(os_id);
     print_title(user, hostname);
 
@@ -87,6 +89,5 @@ int main(int argc, char **argv) {
     print_module(uptime);
     gpu = parse_gpu();
     print_module(gpu);;
-    */
     return 0;
 }

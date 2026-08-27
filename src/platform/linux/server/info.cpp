@@ -5,7 +5,6 @@
 #include <curl/curl.h>
 
 using namespace std;
-//Stage 1: Write the config and functions
 
 ConfInfo readConfig() {
     const string path = "src/config";
@@ -55,48 +54,55 @@ ConfInfo readConfig() {
             int convertInt = stoi(value);
             config.interval = convertInt;
         }
-        break;
     }
     return config;
 }
 
-int SendInfo(InfoEntry hostname, InfoEntry uptime, InfoEntry disk, InfoEntry ram) {
 
-    ConfInfo config = readConfig();
+/*Sending info:
+    *IP from webserver
+    *Hostname
+    *Uptime
+    *Disk
+    *Ram
+    *Swap
+*/
+int SendInfo(InfoEntry hostname, InfoEntry uptime, InfoEntry disk, InfoEntry ram, InfoEntry swap, ConfInfo config) {
+
     CURL* curl = curl_easy_init();
-    string URL = string("http://") + string("127.0.0.1") + string("/server");
-
-    if (!curl)
-        return 1;
-
-    string json = R"({
-    "hostname": ")" + hostname.value + R"(",
-    "uptime": )" + uptime.value + R"(,
-    "disk": )" + disk.value + R"(,
-    "ram": )" + ram.value + R"(
-    })";
 
     struct curl_slist* headers = nullptr;
     headers = curl_slist_append(headers, "Content-Type: application/json");
 
-    curl_easy_setopt(curl, CURLOPT_URL, URL);
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    string URL = config.ip;
 
-    // POST-data
+    curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
+
+    string json =
+    "{\"hostname\":\"" + hostname.value +
+    "\",\"uptime\":\"" + uptime.value + 
+    "\",\"disk\":\"" + disk.value + 
+    "\",\"ram\":\"" + ram.value +
+    "\",\"swap\":\"" + swap.value +
+    "\"}";
+
+    cout << json << '\n';
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, json.c_str());
 
     CURLcode res = curl_easy_perform(curl);
+    int responseCode;
 
-    if (res != CURLE_OK)
-    {
-        std::cerr << "curl error: "
-                  << curl_easy_strerror(res) << '\n';
+    if (res != CURLE_OK) {
+        cerr << "curl error: "
+              << curl_easy_strerror(res) << '\n';
     }
-
+    else {
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+        cout << "HTTP status: " << responseCode << '\n';
+    }
     curl_slist_free_all(headers);
     curl_easy_cleanup(curl);
-
-
-    return 0;
+    return responseCode;
 }

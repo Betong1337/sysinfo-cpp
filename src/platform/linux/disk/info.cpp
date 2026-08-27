@@ -10,7 +10,7 @@
 
 using namespace std;
 
-InfoEntry parse_disk() {
+InfoEntry parse_disk(ConfInfo config) {
     InfoEntry info;
     ostringstream oss;
 
@@ -31,7 +31,12 @@ InfoEntry parse_disk() {
 
     const char* percentage_color = get_percentage_color(percent);
 
-    oss << used << " GB / " << total << " GB (" << percentage_color << fixed << setprecision(2) << percent << "%" << RESET << ")";
+    if (config.server_mode == true) {
+        oss << used << " GB / " << total << " GB (" << fixed << setprecision(2) << percent << "%" << ")";
+    } else {
+        oss << used << " GB / " << total << " GB (" << percentage_color << fixed << setprecision(2) << percent << "%" << RESET << ")";
+    }
+
     result = oss.str();
     
     info.prefix = DISK_PREFIX;

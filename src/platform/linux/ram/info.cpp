@@ -21,7 +21,7 @@ float kbTOgb(std::string input) {
     return result;
 }
 
-InfoEntry parse_ram() {
+InfoEntry parse_ram(ConfInfo config) {
     InfoEntry result;
     InfoEntry memtotal = get_info(RAM_PATH, RAM_MEMTOTAL);
     InfoEntry memavailable = get_info(RAM_PATH, RAM_AVAILABLE);
@@ -37,9 +37,16 @@ InfoEntry parse_ram() {
     const int used_percent = (memused_gb_f / memtotal_gb_f) * 100;
     const char* percentage_color = get_percentage_color(used_percent);
 
-    oss << fixed << setprecision(2) << memused_gb_f << " GB / "
+    if (config.server_mode == true) {
+        oss << fixed << setprecision(2) << memused_gb_f << " GB / "
+        << fixed << setprecision(2) << memtotal_gb_f << " GB "
+        << "(" << used_percent << "%" << ")";
+    } else {
+        oss << fixed << setprecision(2) << memused_gb_f << " GB / "
         << fixed << setprecision(2) << memtotal_gb_f << " GB "
         << "(" << percentage_color << used_percent << "%" << RESET << ")";
+    }
+
     string parsed_str = oss.str();
 
     if (!parsed_str.empty() && parsed_str.front() == '\n') {
@@ -51,7 +58,7 @@ InfoEntry parse_ram() {
     return result;
 }
 
-InfoEntry parse_swap() {
+InfoEntry parse_swap(ConfInfo config) {
     InfoEntry swap_total = get_info(RAM_PATH, SWAP_TOTAL_CMP);
     InfoEntry swap_free = get_info(RAM_PATH, SWAP_FREE_CMP);
     InfoEntry swap_cache = get_info(RAM_PATH, SWAP_CACHED_CMP);
@@ -73,9 +80,16 @@ InfoEntry parse_swap() {
 
     const char* percentage_color = get_percentage_color(used_percent);
 
-    oss << fixed << setprecision(2) << swap_used << " GB / "
+    if (config.server_mode == true) {
+        oss << fixed << setprecision(2) << swap_used << " GB / "
+        << fixed << setprecision(2) << swap_total_f << " GB "
+        << "(" << "%" << ")";
+    } else {
+        oss << fixed << setprecision(2) << swap_used << " GB / "
         << fixed << setprecision(2) << swap_total_f << " GB "
         << "(" << percentage_color << used_percent << "%" << RESET << ")";
+    }
+
     string parsed_str = oss.str();
 
     result.prefix = SWAP_PREFIX;

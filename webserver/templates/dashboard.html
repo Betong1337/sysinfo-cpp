@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Servers{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <h1>Servers</h1>
+        <p class="subtitle">
+            {{ total }} server{% if total != 1 %}s{% endif %}
+        </p>
+    </div>
+
+    <a class="button secondary" href="{{ url_for('admin') }}">
+        Admin
+    </a>
+
+</div>
+
+
+<div class="server-list">
+
+{% for item in servers %}
+
+<a
+    class="server-row"
+    href="{{ url_for('server', server_id=item.server.id) }}"
+>
+
+    <div class="server-main">
+
+        <div class="server-name">
+
+            {% if item.online %}
+                <span class="status-dot online"></span>
+            {% else %}
+                <span class="status-dot offline"></span>
+            {% endif %}
+
+            <div>
+                <strong>{{ item.server.hostname }}</strong>
+
+                <span class="ip">
+                    {{ item.server.ip }}
+                </span>
+            </div>
+
+        </div>
+
+
+        <span class="last-seen">
+            {% if item.online %}
+                Online · {{ item.last_seen }}
+            {% else %}
+                Offline · {{ item.last_seen }}
+            {% endif %}
+        </span>
+
+    </div>
+
+
+    <div class="server-metrics">
+
+        <div>
+            <span>RAM</span>
+            <strong>{{ item.server.ram }}</strong>
+        </div>
+
+        <div>
+            <span>SWAP</span>
+            <strong>{{ item.server.swap }}</strong>
+        </div>
+
+        <div>
+            <span>DISK</span>
+            <strong>{{ item.server.disk }}</strong>
+        </div>
+
+        <div>
+            <span>UPTIME</span>
+            <strong>{{ item.server.uptime }}</strong>
+        </div>
+
+    </div>
+
+
+    <div class="server-services">
+
+        {% for service in item.services %}
+
+            <span class="tag">
+                {{ service.name }}
+            </span>
+
+        {% endfor %}
+
+    </div>
+
+</a>
+
+{% else %}
+
+<div class="empty">
+
+    <h2>No servers</h2>
+
+    <p>
+        Waiting for a server to send its first heartbeat.
+    </p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+<script>
+
+setTimeout(function () {
+    location.reload();
+}, 30000);
+
+</script>
+
+{% endblock %}

@@ -5,6 +5,7 @@
 #include <vector>
 #include "core/core.h"
 #include "core/color.h"
+#include "headers/server.h"
 
 #define RAM_PREFIX "Memory: "
 #define SWAP_PREFIX "Swap: "
@@ -17,5 +18,5 @@
 
 std::string removesuffix(std::string input);
 float kbTOgb(std::string input);
-InfoEntry parse_ram();
-InfoEntry parse_swap();
+InfoEntry parse_ram(ConfInfo config);
+InfoEntry parse_swap(ConfInfo config);

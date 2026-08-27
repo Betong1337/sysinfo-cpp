@@ -1,4 +1,6 @@
 //server
+#pragma once
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -17,4 +19,4 @@ struct ConfInfo {
 #define SERVER_IP_CMP "server_ip"
 
 ConfInfo readConfig();
-int SendInfo(InfoEntry hostname, InfoEntry uptime, InfoEntry disk, InfoEntry ram);
+int SendInfo(InfoEntry hostname, InfoEntry uptime, InfoEntry disk, InfoEntry ram, InfoEntry swap, ConfInfo config);

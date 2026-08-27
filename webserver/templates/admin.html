@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <div class="eyebrow">
+            Administration
+        </div>
+
+        <h1>
+            Manage Services
+        </h1>
+
+        <p class="subtitle">
+            Assign services to your servers.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="admin-layout">
+
+
+<!-- SERVICES -->
+
+<section class="panel">
+
+    <div class="panel-title">
+
+        <div>
+
+            <div class="eyebrow">
+                Services
+            </div>
+
+            <h2>
+                Service catalogue
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <form
+        method="POST"
+        action="{{ url_for('create_service') }}"
+        class="create-service"
+    >
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Service name"
+            required
+        >
+
+        <input
+            type="text"
+            name="description"
+            placeholder="Description"
+        >
+
+        <button
+            class="button"
+            type="submit"
+        >
+            Create
+        </button>
+
+    </form>
+
+
+    <div class="service-list">
+
+        {% for service in services %}
+
+        <div class="service">
+
+            <span class="service-dot"></span>
+
+            <div class="service-info">
+
+                <strong>
+                    {{ service.name }}
+                </strong>
+
+                {% if service.description %}
+
+                <p>
+                    {{ service.description }}
+                </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{{ url_for(
+                    'delete_service',
+                    service_id=service.id
+                ) }}"
+                onsubmit="return confirm(
+                    'Delete this service?'
+                );"
+            >
+
+                <button
+                    class="delete"
+                    type="submit"
+                >
+                    Delete
+                </button>
+
+            </form>
+
+        </div>
+
+        {% else %}
+
+        <p class="muted">
+            No services created.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- SERVERS -->
+
+<section class="panel">
+
+    <div class="panel-title">
+
+        <div>
+
+            <div class="eyebrow">
+                Servers
+            </div>
+
+            <h2>
+                Service assignments
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    {% for item in servers %}
+
+    <div class="admin-server">
+
+        <div class="admin-server-header">
+
+            <div>
+
+                <strong>
+                    {{ item.server.hostname }}
+                </strong>
+
+                <span class="ip">
+                    {{ item.server.ip }}
+                </span>
+
+            </div>
+
+
+            {% if item.online %}
+
+            <div class="status online">
+                <span></span>
+                Online
+            </div>
+
+            {% else %}
+
+            <div class="status offline">
+                <span></span>
+                Offline
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="assignment-list">
+
+            {% for service in item.services %}
+
+            <div class="assignment">
+
+                {{ service.name }}
+
+                <form
+                    method="POST"
+                    action="{{ url_for(
+                        'remove_service',
+                        server_id=item.server.id,
+                        service_id=service.id
+                    ) }}"
+                >
+
+                    <button
+                        class="remove"
+                        type="submit"
+                    >
+                        ×
+                    </button>
+
+                </form>
+
+            </div>
+
+            {% else %}
+
+            <span class="muted">
+                No services assigned
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+
+        <form
+            method="POST"
+            action="{{ url_for(
+                'assign_service',
+                server_id=item.server.id
+            ) }}"
+            class="assign-form"
+        >
+
+            <select
+                name="service_id"
+                required
+            >
+
+                <option
+                    value=""
+                    disabled
+                    selected
+                >
+                    Select service...
+                </option>
+
+
+                {% for service in services %}
+
+                    {% if service.id not in
+                        item.services | map(attribute='id') | list
+                    %}
+
+                    <option value="{{ service.id }}">
+                        {{ service.name }}
+                    </option>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </select>
+
+
+            <button
+                class="button"
+                type="submit"
+            >
+                Assign
+            </button>
+
+        </form>
+
+
+        <form
+            method="POST"
+            action="{{ url_for(
+                'delete_server',
+                server_id=item.server.id
+            ) }}"
+            onsubmit="return confirm(
+                'Remove this server from monitoring?'
+            );"
+        >
+
+            <button
+                class="delete-server"
+                type="submit"
+            >
+                Remove server
+            </button>
+
+        </form>
+
+    </div>
+
+    {% else %}
+
+    <p class="muted">
+        No servers have connected yet.
+    </p>
+
+    {% endfor %}
+
+</section>
+
+</div>
+
+{% endblock %}
