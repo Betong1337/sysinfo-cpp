@@ -7,7 +7,7 @@
 using namespace std;
 
 ConfInfo readConfig() {
-    const string path = "src/config";
+    const string path = "/usr/local/share/sysinfo/config";
     vector<string> info;
     string line;
     ifstream file(path);

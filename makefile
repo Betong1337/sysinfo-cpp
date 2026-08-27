@@ -43,14 +43,18 @@ run: $(TARGET)
 
 PREFIX := /usr/local
 BINDIR := $(PREFIX)/bin
-DATADIR := $(PREFIX)/share/sysinfo/asciiart
+DATADIR := $(PREFIX)/share/sysinfo
+CONFIG := config
+ASCIIARTDIR := $(DATADIR)/asciiart
 
 install: $(TARGET)
 	@echo "Installing $(TARGET) to $(BINDIR)"
 	install -Dm755 $(TARGET) $(BINDIR)/$(TARGET)
-	@echo "Installing ascii-art to $(DATADIR)"
-	install -d $(DATADIR)
-	install -m644 src/asciiart/*.txt $(DATADIR)/
+	@echo "Installing config to $(DATADIR)/config"
+	install -Dm644 $(CONFIG) $(DATADIR)/config
+	@echo "Installing ascii-art to $(ASCIIARTDIR)"
+	install -d $(ASCIIARTDIR)
+	install -m644 src/asciiart/*.txt $(ASCIIARTDIR)/
 
 WINPREFIX := C:/Program Files/sysinfo
 WINBINDIR := $(WINPREFIX)
