@@ -58,7 +58,6 @@ ConfInfo readConfig() {
     return config;
 }
 
-
 /*Sending info:
     *IP from webserver
     *Hostname
